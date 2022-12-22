@@ -6,7 +6,8 @@ import layoutDocument from '@react-pdf/layout';
 import createRenderer from './renderer';
 import { version } from '../package.json';
 
-const fontStore = new FontStore();
+const FONT_STORE_KEY = "REACT_PDF:FONT_STORE";
+const fontStore = globalThis[FONT_STORE_KEY] ? globalThis[FONT_STORE_KEY] : (globalThis[FONT_STORE_KEY] = new FontStore());
 
 // We must keep a single renderer instance, otherwise React will complain
 let renderer;
